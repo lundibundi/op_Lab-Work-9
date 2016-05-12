@@ -1,0 +1,4 @@
+p 'edition p' 'lang c' 10 13 01010666 0
+b 'edition b' 'lang c++' 11 'author b' 667 0
+m 'edition m' 'lang pascal' 6 44 677 0
+

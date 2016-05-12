@@ -6,9 +6,12 @@
 #define OP_LAB_WORK_9_DATE_H
 
 struct Date {
-    unsigned int day;
-    unsigned int month;
-    unsigned int year;
+    int day;
+    int month;
+    int year;
 };
+
+Date DateFromString(const char* text);
+Date DateFromInt(int num);
 
 #endif //OP_LAB_WORK_9_DATE_H

@@ -5,13 +5,16 @@
 #ifndef OP_LAB_WORK_9_LIBRARY_H
 #define OP_LAB_WORK_9_LIBRARY_H
 
+#include <cstddef>
+#include "date.h"
+
 namespace Library {
 
     enum class BookGenre { };
     enum class PaperGenre { };
     enum class MagazineTheme { };
 
-    const int maxLength = 100;
+    const int maxNameLength = 100;
 
     enum class BookType { BOOK, MAGAZINE, NEWSPAPER };
 
@@ -19,13 +22,13 @@ namespace Library {
 
         BookType bookType;
 
-        char editionName[maxLength];
-        char language[maxLength];
+        char editionName[maxNameLength];
+        char language[maxNameLength];
         int id;
 
         union {
             struct {
-                char author[maxLength];
+                char author[maxNameLength];
                 unsigned int yearOfPublish;
                 BookGenre genre;
             } book;
@@ -42,9 +45,9 @@ namespace Library {
         };
     };
 
-    void ReadText(const char *filename);
-    void Read(const char *filename);
-    void Write(const char *filename, bool newFile = false);
+    void ReadFromText(const char *filename, Unit **lib, size_t &size);
+    void Read(const char *filename, Unit **lib, size_t &size);
+    void Write(const char *filename, Unit *lib, size_t size, bool newFile = false);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H
