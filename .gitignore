@@ -5,6 +5,8 @@
 *.suo
 *.user
 *.userosscache
+/Lab_9/.idea
+/Lab_9/CMakeLists.txt
 *.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
