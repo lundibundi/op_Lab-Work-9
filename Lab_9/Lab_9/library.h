@@ -10,9 +10,9 @@
 
 namespace Library {
 
-    enum class BookGenre { };
-    enum class PaperGenre { };
-    enum class MagazineTheme { };
+    enum class BookGenre { Comedy, Drama, RomanceNovel, Tragedy, Horror };
+    enum class PaperGenre { Sport, Politics, Fashion, Celebrities };
+    enum class MagazineTheme { Sport, Politics, Fashion, Science };
 
     const int maxNameLength = 100;
 
@@ -48,6 +48,11 @@ namespace Library {
     void ReadFromText(const char *filename, Unit **lib, size_t &size);
     void Read(const char *filename, Unit **lib, size_t &size);
     void Write(const char *filename, Unit *lib, size_t size, bool newFile = false);
+
+	void AddNewUnit(Unit &unit, Unit **lib, size_t &size);
+	void CreatNewBook(Unit **lib, size_t &size);
+	void CreatNewMagazine(Unit **lib, size_t &size);
+	void CreatNewNewspaper(Unit **lib, size_t &size);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H
