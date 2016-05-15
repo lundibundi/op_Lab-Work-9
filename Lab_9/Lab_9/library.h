@@ -50,11 +50,13 @@ namespace Library {
     void Write(const char *filename, Unit *lib, size_t size, bool newFile = false);
 
 	void AddNewUnit(Unit &unit, Unit **lib, size_t &size);
-	void CreatNewBook(Unit **lib, size_t &size);
-	void CreatNewMagazine(Unit **lib, size_t &size);
-	void CreatNewNewspaper(Unit **lib, size_t &size);
+	Unit* CreatNewBook();
+	Unit* CreatNewMagazine();
+	Unit* CreatNewNewspaper();
 
 	void DeleteUnit(Unit **lib, size_t &size);
+
+	void ChangeUnit(Unit **lib, size_t &size);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H

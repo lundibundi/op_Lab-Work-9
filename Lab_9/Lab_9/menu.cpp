@@ -48,7 +48,7 @@ void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		// Case Change unit
 		case 'C': {
 			system("cls");
-
+			::Library::ChangeUnit(lib, size);
 			break;
 		}
 		// Case Show Authors' books
@@ -76,7 +76,7 @@ void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 
 void ::Menu::ShowMenuForNewUnit() {
 	std::cout <<
-		"What kind of unit do you want to add?\n\n"
+		"What kind of unit?\n\n"
 
 		"A book <B>\n"
 		"A magazine <M>\n"
@@ -90,7 +90,8 @@ void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		case 'B': {
 			system("cls");
 			// Case Add new book to the library
-			::Library::CreatNewBook(lib, size);
+			::Library::Unit *newBook = ::Library::CreatNewBook();
+			::Library::AddNewUnit(*newBook, lib, size);
 			printf("\nAdded.\n");
 			_getch();
 			break;
@@ -98,7 +99,8 @@ void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		case 'M': {
 			system("cls");
 			// Case Add new magazine to the library
-			::Library::CreatNewMagazine(lib, size);
+			::Library::Unit *newMagazine = ::Library::CreatNewBook();
+			::Library::AddNewUnit(*newMagazine, lib, size);
 			printf("\nAdded.\n");
 			_getch();
 			break;
@@ -106,7 +108,8 @@ void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		case 'P': {
 			system("cls");
 			// Case Add new newspaper to the library
-			::Library::CreatNewNewspaper(lib, size);
+			::Library::Unit *newNewspaper = ::Library::CreatNewBook();
+			::Library::AddNewUnit(*newNewspaper, lib, size);
 			printf("\nAdded.\n");
 			_getch();
 			break;

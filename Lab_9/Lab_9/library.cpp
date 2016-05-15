@@ -133,21 +133,22 @@ void ::Library::AddNewUnit(Unit &unit, Unit **lib, size_t &size) {
 	}
 }
 
-// Creats new book and adds it to the library
-void ::Library::CreatNewBook(Unit **lib, size_t &size) {
-	Unit newBook = { BookType::BOOK };
+// Creats new book
+Unit* ::Library::CreatNewBook() {
+	Unit *newBook = new Unit;
+	newBook->bookType = ::Library::BookType::BOOK;
 
 	std::cout << "Edition name: ";
-	std::cin.getline(newBook.editionName, ::Library::maxNameLength);
+	std::cin.getline(newBook->editionName, ::Library::maxNameLength);
 	std::cout << "Language: ";
-	std::cin.getline(newBook.language, ::Library::maxNameLength);
+	std::cin.getline(newBook->language, ::Library::maxNameLength);
 	std::cout << "ID: ";
-	std::cin >> newBook.id;
+	std::cin >> newBook->id;
 	std::cin.get();
 	std::cout << "Author's name: ";
-	std::cin.getline(newBook.book.author, ::Library::maxNameLength);
+	std::cin.getline(newBook->book.author, ::Library::maxNameLength);
 	std::cout << "Year of publish: ";
-	std::cin >> newBook.book.yearOfPublish;
+	std::cin >> newBook->book.yearOfPublish;
 	std::cin.get();
 
 	std::cout << "Choose genre (Drama is default):\n\n";
@@ -156,50 +157,50 @@ void ::Library::CreatNewBook(Unit **lib, size_t &size) {
 	char choice = toupper(_getch());
 	switch (choice) {
 		case 'C': {
-			newBook.book.genre = ::Library::BookGenre::Comedy;
+			newBook->book.genre = ::Library::BookGenre::Comedy;
 			break;
 		}
 		case 'D': {
-			newBook.book.genre = ::Library::BookGenre::Drama;
+			newBook->book.genre = ::Library::BookGenre::Drama;
 			break;
 		}
 		case 'N': {
-			newBook.book.genre = ::Library::BookGenre::RomanceNovel;
+			newBook->book.genre = ::Library::BookGenre::RomanceNovel;
 			break;
 		}
 		case 'T': {
-			newBook.book.genre = ::Library::BookGenre::Tragedy;
+			newBook->book.genre = ::Library::BookGenre::Tragedy;
 			break;
 		}
 		case 'H': {
-			newBook.book.genre = ::Library::BookGenre::Horror;
+			newBook->book.genre = ::Library::BookGenre::Horror;
 			break;
 		}
 		default: {
-			newBook.book.genre = ::Library::BookGenre::Drama;
+			newBook->book.genre = ::Library::BookGenre::Drama;
 			break;
 		}
 	}
-
-	AddNewUnit(newBook, lib, size);
+	return newBook;
 }
 
-// Creats new magazine and adds it to the library
-void ::Library::CreatNewMagazine(Unit **lib, size_t &size) {
-	Unit newMagazine = { BookType::MAGAZINE };
+// Creats new magazine
+Unit* ::Library::CreatNewMagazine() {
+	Unit *newMagazine = new Unit;
+	newMagazine->bookType = ::Library::BookType::MAGAZINE;
 
 	std::cout << "Edition name: ";
-	std::cin.getline(newMagazine.editionName, ::Library::maxNameLength);
+	std::cin.getline(newMagazine->editionName, ::Library::maxNameLength);
 	std::cout << "Language: ";
-	std::cin.getline(newMagazine.language, ::Library::maxNameLength);
+	std::cin.getline(newMagazine->language, ::Library::maxNameLength);
 	std::cout << "ID: ";
-	std::cin >> newMagazine.id;
+	std::cin >> newMagazine->id;
 	std::cin.get();
 	std::cout << "Magazine number: ";
-	std::cin >> newMagazine.magazine.number;
+	std::cin >> newMagazine->magazine.number;
 	std::cin.get();
 	std::cout << "Year of publish: ";
-	std::cin >> newMagazine.magazine.yearOfPublish;
+	std::cin >> newMagazine->magazine.yearOfPublish;
 	std::cin.get();
 
 	std::cout << "Choose theme (Sport is default):\n\n";
@@ -208,49 +209,49 @@ void ::Library::CreatNewMagazine(Unit **lib, size_t &size) {
 	char choice = toupper(_getch());
 	switch (choice) {
 		case 'S': {
-			newMagazine.magazine.theme = ::Library::MagazineTheme::Sport;
+			newMagazine->magazine.theme = ::Library::MagazineTheme::Sport;
 			break;
 		}
 		case 'P': {
-			newMagazine.magazine.theme = ::Library::MagazineTheme::Politics;
+			newMagazine->magazine.theme = ::Library::MagazineTheme::Politics;
 			break;
 		}
 		case 'F': {
-			newMagazine.magazine.theme = ::Library::MagazineTheme::Fashion;
+			newMagazine->magazine.theme = ::Library::MagazineTheme::Fashion;
 			break;
 		}
 		case 'C': {
-			newMagazine.magazine.theme = ::Library::MagazineTheme::Science;
+			newMagazine->magazine.theme = ::Library::MagazineTheme::Science;
 			break;
 		}
 		default: {
-			newMagazine.magazine.theme = ::Library::MagazineTheme::Sport;
+			newMagazine->magazine.theme = ::Library::MagazineTheme::Sport;
 			break;
 		}
 	}
-
-	AddNewUnit(newMagazine, lib, size);
+	return newMagazine;
 }
 
-// Creats new newspaper and adds it to the library
-void ::Library::CreatNewNewspaper(Unit **lib, size_t &size) {
-	Unit newNewspaper = { BookType::NEWSPAPER };
+// Creats new newspaper
+Unit* ::Library::CreatNewNewspaper() {
+	Unit *newNewspaper = new Unit;
+	newNewspaper->bookType = ::Library::BookType::BOOK;
 
 	std::cout << "Edition name: ";
-	std::cin.getline(newNewspaper.editionName, ::Library::maxNameLength);
+	std::cin.getline(newNewspaper->editionName, ::Library::maxNameLength);
 	std::cout << "Language: ";
-	std::cin.getline(newNewspaper.language, ::Library::maxNameLength);
+	std::cin.getline(newNewspaper->language, ::Library::maxNameLength);
 	std::cout << "ID: ";
-	std::cin >> newNewspaper.id;
+	std::cin >> newNewspaper->id;
 	std::cin.get();
 	std::cout << "Newspaper number: ";
-	std::cin >> newNewspaper.paper.number;
+	std::cin >> newNewspaper->paper.number;
 	std::cin.get();
 
 	std::cout << "Date of publish: ";
 	char date[20];
 	std::cin.getline(date, 20);
-	newNewspaper.paper.publishDate = DateFromString(date);
+	newNewspaper->paper.publishDate = DateFromString(date);
 
 	std::cout << "Choose genre (Sport is default):\n\n";
 	::Menu::ShowPaperGenres();
@@ -258,33 +259,32 @@ void ::Library::CreatNewNewspaper(Unit **lib, size_t &size) {
 	char choice = toupper(_getch());
 	switch (choice) {
 		case 'S': {
-			newNewspaper.paper.genre = ::Library::PaperGenre::Sport;
+			newNewspaper->paper.genre = ::Library::PaperGenre::Sport;
 			break;
 		}
 		case 'P': {
-			newNewspaper.paper.genre = ::Library::PaperGenre::Politics;
+			newNewspaper->paper.genre = ::Library::PaperGenre::Politics;
 			break;
 		}
 		case 'F': {
-			newNewspaper.paper.genre = ::Library::PaperGenre::Fashion;
+			newNewspaper->paper.genre = ::Library::PaperGenre::Fashion;
 			break;
 		}
 		case 'C': {
-			newNewspaper.paper.genre = ::Library::PaperGenre::Celebrities;
+			newNewspaper->paper.genre = ::Library::PaperGenre::Celebrities;
 			break;
 		}
 		default: {
-			newNewspaper.paper.genre = ::Library::PaperGenre::Sport;
+			newNewspaper->paper.genre = ::Library::PaperGenre::Sport;
 			break;
 		}
 	}
-
-	AddNewUnit(newNewspaper, lib, size);
+	return newNewspaper;
 }
 
 void ::Library::DeleteUnit(Unit **lib, size_t &size) {
 	// Just for convenience
-	Unit * library = *lib;
+	Unit *library = *lib;
 
 	std::cout << "Enter an ID of unit: ";
 	int id;
@@ -312,5 +312,58 @@ void ::Library::DeleteUnit(Unit **lib, size_t &size) {
 	--size;
 
 	std::cout << "Deleted.\n";
+	_getch();
+}
+
+void ::Library::ChangeUnit(Unit **lib, size_t &size) {
+	// Just for convenience
+	Unit *library = *lib;
+
+	std::cout << "Enter an ID of unit you want to change: ";
+	int id;
+	std::cin >> id;
+	std::cin.get();
+
+	// Find the unit with that ID in the library
+	int i;
+	for (i = 0; i < size; ++i)
+		if (library[i].id == id)
+			break;
+
+	// If there is no unit, show error and stop the function
+	if (i == size) {
+		std::cout << "There is no unit with this ID in the library.\n";
+		_getch();
+		return;
+	}
+	std::cout << std::endl;
+	// Creat new unit
+	Unit *newUnit;
+	::Menu::ShowMenuForNewUnit();
+	std::cout << std::endl;
+	char choice = toupper(_getch());
+	switch (choice) {
+		case 'B': {
+			newUnit = ::Library::CreatNewBook();
+			break;
+		}
+		case 'M': {
+			newUnit = ::Library::CreatNewMagazine();
+			break;
+		}
+		case 'P': {
+			newUnit = ::Library::CreatNewNewspaper();
+			break;
+		}
+		default: {
+			std::cout << "No changing. Back.\n";
+			_getch();
+			return;
+		}
+	}
+
+	// Change unit
+	library[i] = *newUnit;
+	std::cout << "Unit changed.\n";
 	_getch();
 }
