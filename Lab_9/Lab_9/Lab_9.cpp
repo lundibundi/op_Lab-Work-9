@@ -22,14 +22,13 @@ int main() {
 	Library::Unit *lib = nullptr;
 	size_t size = 0;
 	Library::ReadFromText("test/test-text-library.txt", &lib, size);
+	//Library::Read("test/test-bin-library", &lib, size);
 
 	// Show main menu
 	Menu::ShowMainMenu();
 
 	// Get chosen option
 	char choice = toupper(_getch());
-
-	// Choose an option
 	while (choice != 'Q') {
 		Menu::MainMenuSwitch(choice, &lib, size);
 

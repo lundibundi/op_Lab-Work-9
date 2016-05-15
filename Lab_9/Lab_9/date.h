@@ -13,5 +13,6 @@ struct Date {
 
 Date DateFromString(const char* text);
 Date DateFromInt(int num);
+void ShowDate(const Date &date);
 
 #endif //OP_LAB_WORK_9_DATE_H

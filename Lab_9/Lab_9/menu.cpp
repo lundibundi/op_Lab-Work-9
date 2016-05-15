@@ -21,6 +21,7 @@ void ::Menu::ShowMainMenu() {
 		"Delete unit <D>\n"
 		"Change unit <C>\n\n"
 
+		"Show all units <A>\n"
 		"Show Authors' books <B>\n"
 		"Show number of Ukrainian newspapers and magazines <U>\n"
 		"Creat new sorted catalog of English magazines <E>\n\n"
@@ -49,6 +50,13 @@ void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		case 'C': {
 			system("cls");
 			::Library::ChangeUnit(lib, size);
+			break;
+		}
+		// Case Show all units
+		case 'A': {
+			system("cls");
+			::Library::ShowAllUnits(*lib, size);
+			_getch();
 			break;
 		}
 		// Case Show Authors' books

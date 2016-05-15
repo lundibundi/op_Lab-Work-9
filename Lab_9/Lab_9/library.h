@@ -55,8 +55,12 @@ namespace Library {
 	Unit* CreatNewNewspaper();
 
 	void DeleteUnit(Unit **lib, size_t &size);
-
 	void ChangeUnit(Unit **lib, size_t &size);
+
+	void ShowAllUnits(const Unit *lib, size_t size);
+	void ShowBook(const Unit &book);
+	void ShowMagazine(const Unit &magazine);
+	void ShowNewspaper(const Unit &paper);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H

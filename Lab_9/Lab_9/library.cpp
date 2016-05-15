@@ -23,7 +23,6 @@ void ::Library::ReadFromText(const char *filename, Unit **lib, size_t &size) {
         return;
     }
 
-    char line[2048]{0};
     if (size < 1) size = 10;
 
     if (*lib == nullptr) *lib = new Unit[size];
@@ -366,4 +365,125 @@ void ::Library::ChangeUnit(Unit **lib, size_t &size) {
 	library[i] = *newUnit;
 	std::cout << "Unit changed.\n";
 	_getch();
+}
+
+void ::Library::ShowAllUnits(const Unit *library, size_t size) {
+	if (!size) {
+		std::cout << "There is no elements.\n";
+		return;
+	}
+
+	for (int i = 0; i < size; ++i) {
+		switch (library[i].bookType) {
+			case BookType::BOOK: {
+				::Library::ShowBook(library[i]);
+				break;
+			}
+			case BookType::MAGAZINE: {
+				::Library::ShowMagazine(library[i]);
+				break;
+			}
+			case BookType::NEWSPAPER: {
+				::Library::ShowNewspaper(library[i]);
+				break;
+			}
+		}
+		std::cout << '\n';
+	}
+}
+
+void ::Library::ShowBook(const Unit &book) {
+	std::cout
+		<< "BOOK.\n"
+		<< "Edition name: " << book.editionName << '\n'
+		<< "ID: " << book.id << '\n'
+		<< "Laguage: " << book.language << '\n'
+		<< "Author's name: " << book.book.author << '\n'
+		<< "Genre: ";
+	switch (book.book.genre) {
+		case BookGenre::Comedy: {
+			std::cout << "Comedy\n";
+			break;
+		}
+		case BookGenre::Drama: {
+			std::cout << "Drama\n";
+			break;
+		}
+		case BookGenre::Horror: {
+			std::cout << "Horror\n";
+			break;
+		}
+		case BookGenre::RomanceNovel: {
+			std::cout << "Romance novel\n";
+			break;
+		}
+		case BookGenre::Tragedy: {
+			std::cout << "Tragedy\n";
+			break;
+		}
+	}
+	std::cout << "Year of publishing: " << book.book.yearOfPublish << '\n';
+}
+
+void ::Library::ShowMagazine(const Unit &magazine) {
+	std::cout
+		<< "MAGAZINE.\n"
+		<< "Edition name: " << magazine.editionName << '\n'
+		<< "ID: " << magazine.id << '\n'
+		<< "Laguage: " << magazine.language << '\n'
+		<< "Theme: ";
+
+	switch (magazine.magazine.theme) {
+		case MagazineTheme::Sport: {
+			std::cout << "Sport\n";
+			break;
+		}
+		case MagazineTheme::Politics: {
+			std::cout << "Politics\n";
+			break;
+		}
+		case MagazineTheme::Science: {
+			std::cout << "Science\n";
+			break;
+		}
+		case MagazineTheme::Fashion: {
+			std::cout << "Fashion\n";
+			break;
+		}
+	}
+	std::cout
+		<< "Number: " << magazine.magazine.number << '\n'
+		<< "Year of publishing: " << magazine.magazine.yearOfPublish << '\n';
+}
+
+void ::Library::ShowNewspaper(const Unit &paper) {
+	std::cout
+		<< "NEWSPAPER.\n"
+		<< "Edition name: " << paper.editionName << '\n'
+		<< "ID: " << paper.id << '\n'
+		<< "Laguage: " << paper.language << '\n'
+		<< "Genre: ";
+	switch (paper.paper.genre) {
+		case PaperGenre::Sport: {
+			std::cout << "Sport\n";
+			break;
+		}
+		case PaperGenre::Celebrities: {
+			std::cout << "Celebrities\n";
+			break;
+		}
+		case PaperGenre::Fashion: {
+			std::cout << "Fashoin\n";
+			break;
+		}
+		case PaperGenre::Politics: {
+			std::cout << "Politics\n";
+			break;
+		}
+	}
+	std::cout
+		<< "Number: " << paper.paper.number << '\n'
+		<< "Date of publishing: ";
+	ShowDate(paper.paper.publishDate);
+	std::cout << '\n';
 }

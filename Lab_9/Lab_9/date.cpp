@@ -20,3 +20,7 @@ Date DateFromInt(int num) {
     date.day = num % 100;
     return date;
 }
+
+void ShowDate(const Date &date) {
+	printf("%d %d %d", date.day, date.month, date.year);
+}

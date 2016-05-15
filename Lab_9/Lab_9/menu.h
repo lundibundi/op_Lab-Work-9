@@ -5,6 +5,7 @@
 #include "library.h"
 
 namespace Menu {
+
 	void ShowMainMenu();
 	void MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size);
 	
