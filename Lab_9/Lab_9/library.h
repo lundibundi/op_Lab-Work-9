@@ -53,6 +53,8 @@ namespace Library {
 	void CreatNewBook(Unit **lib, size_t &size);
 	void CreatNewMagazine(Unit **lib, size_t &size);
 	void CreatNewNewspaper(Unit **lib, size_t &size);
+
+	void DeleteUnit(Unit **lib, size_t &size);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H

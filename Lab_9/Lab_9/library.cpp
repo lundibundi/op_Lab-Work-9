@@ -133,7 +133,7 @@ void ::Library::AddNewUnit(Unit &unit, Unit **lib, size_t &size) {
 	}
 }
 
-// Creat new book
+// Creats new book and adds it to the library
 void ::Library::CreatNewBook(Unit **lib, size_t &size) {
 	Unit newBook = { BookType::BOOK };
 
@@ -184,7 +184,7 @@ void ::Library::CreatNewBook(Unit **lib, size_t &size) {
 	AddNewUnit(newBook, lib, size);
 }
 
-// Creat new magazine
+// Creats new magazine and adds it to the library
 void ::Library::CreatNewMagazine(Unit **lib, size_t &size) {
 	Unit newMagazine = { BookType::MAGAZINE };
 
@@ -232,6 +232,7 @@ void ::Library::CreatNewMagazine(Unit **lib, size_t &size) {
 	AddNewUnit(newMagazine, lib, size);
 }
 
+// Creats new newspaper and adds it to the library
 void ::Library::CreatNewNewspaper(Unit **lib, size_t &size) {
 	Unit newNewspaper = { BookType::NEWSPAPER };
 
@@ -279,4 +280,37 @@ void ::Library::CreatNewNewspaper(Unit **lib, size_t &size) {
 	}
 
 	AddNewUnit(newNewspaper, lib, size);
+}
+
+void ::Library::DeleteUnit(Unit **lib, size_t &size) {
+	// Just for convenience
+	Unit * library = *lib;
+
+	std::cout << "Enter an ID of unit: ";
+	int id;
+	std::cin >> id;
+	std::cin.get();
+
+	// Find the unit with that ID in the library
+	int i;
+	for (i = 0; i < size; ++i)
+		if (library[i].id == id)
+			break;
+
+	// If there is no unit, show error and stop the function
+	if (i == size) {
+		std::cout << "There is no unit with this ID in the library.\n";
+		_getch();
+		return;
+	}
+
+	// Delete the unit by moving all units after
+	for (int j = i; j < size - 1; ++j)
+		library[j] = library[j + 1];
+
+	// Decrement the size of container
+	--size;
+
+	std::cout << "Deleted.\n";
+	_getch();
 }

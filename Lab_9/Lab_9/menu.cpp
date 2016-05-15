@@ -31,41 +31,41 @@ void ::Menu::ShowMainMenu() {
 // Choose selected option
 void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 	switch (choice) {
+		// Case Add new unit
 		case 'N': {
 			system("cls");
-			// Case Add new unit
 			ShowMenuForNewUnit();
 			char nextChoice = toupper(_getch());
 			NewUnitSwitch(nextChoice, lib, size);
 			break;
 		}
+		// Case Delete unit
 		case 'D': {
 			system("cls");
-			// Case Delete unit
-
+			::Library::DeleteUnit(lib, size);
 			break;
 		}
+		// Case Change unit
 		case 'C': {
 			system("cls");
-			// Case Change unit
 
 			break;
 		}
+		// Case Show Authors' books
 		case 'B': {
 			system("cls");
-			// Case Show Authors' books
 
 			break;
 		}
+		// Case Show number of Ukrainian newspapers and magazines
 		case 'U': {
 			system("cls");
-			// Case Show number of Ukrainian newspapers and magazines
 
 			break;
 		}
+		// Case Creat new sorted catalog of English magazines
 		case 'E': {
 			system("cls");
-			// Case Creat new sorted catalog of English magazines
 
 			break;
 		}
