@@ -18,16 +18,22 @@
 #include "library.h"
 #include "menu.h"
 
+const char *binLibFile = "test/test-bin-library";		// name of binary file of library
+const char *txtLibFile = "test/test-text-library.txt";	// name of text file of library
+
 int main() {
 	Library::Unit *lib = nullptr;
 	size_t size = 0;
-	Library::ReadFromText("test/test-text-library.txt", &lib, size);
-	//Library::Read("test/test-bin-library", &lib, size);
+
+	// Choose a file
+	Menu::ShowReadingFileMenu();
+	char fileChoice = toupper(_getch());
+	Menu::ReadingFileSwitch(fileChoice, &lib, size);
 
 	// Show main menu
 	Menu::ShowMainMenu();
 
-	// Get chosen option
+	// Choose an option
 	char choice = toupper(_getch());
 	while (choice != 'Q') {
 		Menu::MainMenuSwitch(choice, &lib, size);
@@ -37,6 +43,5 @@ int main() {
 		choice = toupper(_getch());
 	}
 
-	Library::Write("test/test-bin-library", lib, size, true);
 	return 0;
 }

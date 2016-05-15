@@ -12,7 +12,10 @@
 #define _getch getch
 #endif
 
-// Show the main menu
+extern const char *binLibFile;
+extern const char *txtLibFile;
+
+// Shows the main menu
 void ::Menu::ShowMainMenu() {
 	std::cout <<
 		"Choose an option:\n\n"
@@ -26,10 +29,12 @@ void ::Menu::ShowMainMenu() {
 		"Show number of Ukrainian newspapers and magazines <U>\n"
 		"Creat new sorted catalog of English magazines <E>\n\n"
 
+		"Save library in a bin file <S>\n\n"
+
 		"Quit <Q>\n";
 }
 
-// Choose selected option
+// Chooses selected option in main menu
 void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 	switch (choice) {
 		// Case Add new unit
@@ -77,11 +82,18 @@ void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 
 			break;
 		}
+		// Case Save library
+		case 'S': {
+			system("cls");
+			Library::Write("test/test-bin-library", *lib, size, true);
+			break;
+		}
 		default:
 			break;
 	}
 }
 
+// Shows menu in option "Add new unit"
 void ::Menu::ShowMenuForNewUnit() {
 	std::cout <<
 		"What kind of unit?\n\n"
@@ -93,6 +105,7 @@ void ::Menu::ShowMenuForNewUnit() {
 		"Cancel <Q>\n";
 }
 
+// Chooses selected option in "Add new unit"
 void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 	switch (choice) {
 		case 'B': {
@@ -127,6 +140,7 @@ void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 	}
 }
 
+// Shows all book gengres
 void ::Menu::ShowBookGenres() {
 	std::cout <<
 		"Comedy <C>\n"
@@ -136,6 +150,7 @@ void ::Menu::ShowBookGenres() {
 		"Horror <H>\n\n";
 }
 
+// Shows all magazine themes
 void ::Menu::ShowMagazineThemes() {
 	std::cout <<
 		"Sport <S>\n"
@@ -144,10 +159,37 @@ void ::Menu::ShowMagazineThemes() {
 		"Science <C>\n\n";
 }
 
+// Show all newspaper genres
 void ::Menu::ShowPaperGenres() {
 	std::cout <<
 		"Sport <S>\n"
 		"Politics <P>\n"
 		"Fashion <F>\n"
 		"Celebrities <C>\n\n";
+}
+
+// Shows menu for reading library from file
+void ::Menu::ShowReadingFileMenu() {
+	std::cout
+		<< "Open: \n\n"
+
+		<< "Binary library <B>\n"
+		<< "Text library <T>\n\n";
+}
+
+void ::Menu::ReadingFileSwitch(char choice, ::Library::Unit **lib, size_t &size) {
+	switch (choice) {
+		case 'B': {
+			::Library::Read(binLibFile, lib, size);
+			break;
+		}
+		case 'T': {
+			::Library::ReadFromText(txtLibFile, lib, size);
+			break;
+		}
+		default: {
+			::Library::ReadFromText(txtLibFile, lib, size);
+			break;
+		}
+	}
 }

@@ -6,6 +6,9 @@
 
 namespace Menu {
 
+	void ShowReadingFileMenu();
+	void ReadingFileSwitch(char choice, ::Library::Unit **lib, size_t &size);
+
 	void ShowMainMenu();
 	void MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size);
 	

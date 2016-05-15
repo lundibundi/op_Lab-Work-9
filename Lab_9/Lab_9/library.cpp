@@ -20,7 +20,7 @@ void ::Library::ReadFromText(const char *filename, Unit **lib, size_t &size) {
     if (f == NULL) {
         perror("file not exist ");
         _getch();
-        return;
+        exit(EXIT_FAILURE);
     }
 
     if (size < 1) size = 10;
@@ -80,7 +80,7 @@ void ::Library::Read(const char *filename, Unit **lib, size_t &size) {
     if (f == NULL) {
         perror("file not exist");
         _getch();
-        return;
+		exit(EXIT_FAILURE);
     }
 
     // determine size
