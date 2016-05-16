@@ -62,7 +62,7 @@ namespace Library {
 	void ShowMagazine(const Unit &magazine);
 	void ShowNewspaper(const Unit &paper);
 
-	void SaveInBin(Unit *lib, size_t size);
+	void ShowUkrainian(const Unit *lib, size_t size);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H

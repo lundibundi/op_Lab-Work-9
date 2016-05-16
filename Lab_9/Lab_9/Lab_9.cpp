@@ -29,6 +29,7 @@ int main() {
 	Menu::ShowReadingFileMenu();
 	char fileChoice = toupper(_getch());
 	Menu::ReadingFileSwitch(fileChoice, &lib, size);
+	system("cls");
 
 	// Show main menu
 	Menu::ShowMainMenu();

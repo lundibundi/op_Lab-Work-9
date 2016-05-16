@@ -234,7 +234,7 @@ Unit* ::Library::CreatNewMagazine() {
 // Creats new newspaper
 Unit* ::Library::CreatNewNewspaper() {
 	Unit *newNewspaper = new Unit;
-	newNewspaper->bookType = ::Library::BookType::BOOK;
+	newNewspaper->bookType = ::Library::BookType::NEWSPAPER;
 
 	std::cout << "Edition name: ";
 	std::cin.getline(newNewspaper->editionName, ::Library::maxNameLength);
@@ -486,4 +486,25 @@ void ::Library::ShowNewspaper(const Unit &paper) {
 		<< "Date of publishing: ";
 	ShowDate(paper.paper.publishDate);
 	std::cout << '\n';
+}
+
+void ::Library::ShowUkrainian(const Unit *lib, size_t size) {
+	if (!size) {
+		std::cout << "There is no elements.\n";
+		return;
+	}
+
+	int newspapers = 0;
+	int magazines = 0;
+
+	for (int i = 0; i < size; ++ i) {
+		if (lib[i].bookType == ::Library::BookType::MAGAZINE && !stricmp(lib[i].language, "ukr"))
+			++magazines;
+		else if (lib[i].bookType == ::Library::BookType::NEWSPAPER && !stricmp(lib[i].language, "ukr"))
+			++newspapers;
+	}
+
+	std::cout << "There are "
+		<< magazines << " Ukrainian magazines and "
+		<< newspapers << " newspapers.\n\n";
 }

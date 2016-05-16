@@ -26,7 +26,7 @@ void ::Menu::ShowMainMenu() {
 
 		"Show all units <A>\n"
 		"Show Authors' books <B>\n"
-		"Show number of Ukrainian newspapers and magazines <U>\n"
+		"Show the number of Ukrainian newspapers and magazines <U>\n"
 		"Creat new sorted catalog of English magazines <E>\n\n"
 
 		"Save library in a bin file <S>\n\n"
@@ -73,7 +73,8 @@ void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		// Case Show number of Ukrainian newspapers and magazines
 		case 'U': {
 			system("cls");
-
+			::Library::ShowUkrainian(*lib, size);
+			_getch();
 			break;
 		}
 		// Case Creat new sorted catalog of English magazines
@@ -120,7 +121,7 @@ void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		case 'M': {
 			system("cls");
 			// Case Add new magazine to the library
-			::Library::Unit *newMagazine = ::Library::CreatNewBook();
+			::Library::Unit *newMagazine = ::Library::CreatNewMagazine();
 			::Library::AddNewUnit(*newMagazine, lib, size);
 			printf("\nAdded.\n");
 			_getch();
@@ -129,7 +130,7 @@ void ::Menu::NewUnitSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		case 'P': {
 			system("cls");
 			// Case Add new newspaper to the library
-			::Library::Unit *newNewspaper = ::Library::CreatNewBook();
+			::Library::Unit *newNewspaper = ::Library::CreatNewNewspaper();
 			::Library::AddNewUnit(*newNewspaper, lib, size);
 			printf("\nAdded.\n");
 			_getch();
