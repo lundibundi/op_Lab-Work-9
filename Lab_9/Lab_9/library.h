@@ -63,6 +63,12 @@ namespace Library {
 	void ShowNewspaper(const Unit &paper);
 
 	void ShowUkrainian(const Unit *lib, size_t size);
+	void ShowAuthorBooks(Unit *lib, size_t size);
+
+	void InputAuthorsNamePeriod(char *name, int &year1, int &year2);
+	Unit* InputAuthorsBooks(char * author, int year1, int year2, Unit *from, size_t &size, size_t &catalogSize);
+	bool CheckBook(const Unit &book, const char *author, int year1, int year2);
+	void SortAuthorsBooks(Unit *lib, size_t size);
 }
 
 #endif //OP_LAB_WORK_9_LIBRARY_H

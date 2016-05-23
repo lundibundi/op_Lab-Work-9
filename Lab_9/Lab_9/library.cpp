@@ -508,3 +508,85 @@ void ::Library::ShowUkrainian(const Unit *lib, size_t size) {
 		<< magazines << " Ukrainian magazines and "
 		<< newspapers << " newspapers.\n\n";
 }
+
+void Library::ShowAuthorBooks(Unit * lib, size_t size) {
+	if (!size) {
+		std::cout << "There is no elements.\n";
+		return;
+	}
+
+	char author[Library::maxNameLength];
+	int year1;
+	int year2;
+
+	InputAuthorsNamePeriod(author, year1, year2);
+
+	Unit *authorLib = nullptr;
+	size_t authorSize = 0;
+
+	authorLib = InputAuthorsBooks(author, year1, year2, lib, size, authorSize);
+
+	if (authorSize == 0) {
+		system("cls");
+		std::cout << "There are no books written by " << author << " in period " << year1 << " - " << year2;
+		_getch();
+		return;
+	}
+
+	SortAuthorsBooks(authorLib, authorSize);
+	
+	system("cls");
+	std::cout << author << ", " << year1 << " - " << year2 << "\n\n";
+	ShowAllUnits(authorLib, authorSize);
+	delete[] authorLib;
+}
+
+void Library::InputAuthorsNamePeriod(char *name, int &year1, int &year2)
+{
+	std::cout << "Enter Author's name: ";
+	std::cin.getline(name, Library::maxNameLength);
+	std::cout << "Enter a period in years (example, 1915 1945): ";
+	std::cin >> year1 >> year2;
+	std::cin.get();
+
+	while (year1 < 0 || year2 < 0) {
+		system("cls");
+		std::cout << "Enter Author's name: " << name << '\n\n';
+		std::cout << "Unexpected period. Try again.\n";
+		std::cout << "Enter a period in years (example, 1915 1945): ";
+		std::cin >> year1 >> year2;
+		std::cin.get();
+	}
+}
+
+Unit* Library::InputAuthorsBooks(char * author, int year1, int year2, Unit *from, size_t &size, size_t &catalogSize) {
+	Unit* authorLib = nullptr;
+
+	for (int i = 0; i < size; ++i) {
+		if (CheckBook(from[i], author, year1, year2)) {
+			AddNewUnit(from[i], &authorLib, catalogSize);
+		}
+	}
+	return authorLib;
+}
+
+bool Library::CheckBook(const Unit & book, const char *author, int year1, int year2) {
+	if (book.bookType == Library::BookType::BOOK && !strcmp(author, book.book.author)
+		&& book.book.yearOfPublish >= year1 && book.book.yearOfPublish <= year2) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void Library::SortAuthorsBooks(Unit *lib, size_t size) {
+	for (int i = 0; i < size; ++i) {
+		for (int j = i + 1; j < size; ++j) {
+			if (strcmp(lib[j].editionName, lib[i].editionName) < 0) {
+				Unit temp = lib[i];
+				lib[i] = lib[j];
+				lib[j] = temp;
+			}
+		}
+	}
+}

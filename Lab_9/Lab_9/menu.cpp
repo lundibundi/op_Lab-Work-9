@@ -67,7 +67,8 @@ void ::Menu::MainMenuSwitch(char choice, ::Library::Unit **lib, size_t &size) {
 		// Case Show Authors' books
 		case 'B': {
 			system("cls");
-
+			::Library::ShowAuthorBooks(*lib, size);
+			_getch();
 			break;
 		}
 		// Case Show number of Ukrainian newspapers and magazines
